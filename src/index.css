@@ -1,0 +1,264 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Asmita's Portfolio Design System */
+
+@layer base {
+  :root {
+    /* Core Dark Theme Colors */
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    
+    /* Card & Surface Colors */
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    
+    /* Brand Colors - Purple to Orange Gradient */
+    --primary: 270 91% 65%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 5% 15%;
+    --secondary-foreground: 0 0% 98%;
+    
+    /* Accent & Muted */
+    --muted: 240 5% 15%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 5% 15%;
+    --accent-foreground: 0 0% 98%;
+    
+    /* Status Colors */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    
+    /* UI Elements */
+    --border: 240 5% 15%;
+    --input: 240 5% 15%;
+    --ring: 270 91% 65%;
+    --radius: 0.75rem;
+    
+    /* Gradient Colors */
+    --gradient-start: 270 91% 65%;
+    --gradient-middle: 315 100% 70%;
+    --gradient-end: 25 95% 53%;
+    
+    /* Glass Effect */
+    --glass-bg: 240 10% 3.9% / 0.8;
+    --glass-border: 0 0% 100% / 0.1;
+    
+    /* Animation Colors */
+    --glow-purple: 270 91% 65% / 0.3;
+    --glow-orange: 25 95% 53% / 0.3;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-poppins;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Gradient Text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-[hsl(var(--gradient-start))] via-[hsl(var(--gradient-middle))] to-[hsl(var(--gradient-end))] bg-clip-text text-transparent;
+  }
+  
+  /* Gradient Background */
+  .gradient-bg {
+    @apply bg-gradient-to-r from-[hsl(var(--gradient-start))] via-[hsl(var(--gradient-middle))] to-[hsl(var(--gradient-end))];
+  }
+  
+  /* Glass Effect */
+  .glass {
+    @apply bg-background/80 backdrop-blur-md border border-white/10;
+  }
+  
+  /* Animated Gradient Background */
+  .animated-gradient {
+    background: linear-gradient(-45deg, 
+      hsl(var(--gradient-start)), 
+      hsl(var(--gradient-middle)), 
+      hsl(var(--gradient-end)), 
+      hsl(var(--gradient-start))
+    );
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+  }
+  
+  /* Glow Effects */
+  .glow-purple {
+    box-shadow: 0 0 20px hsl(var(--glow-purple)),
+                0 0 40px hsl(var(--glow-purple)),
+                0 0 80px hsl(var(--glow-purple));
+  }
+  
+  .glow-orange {
+    box-shadow: 0 0 20px hsl(var(--glow-orange)),
+                0 0 40px hsl(var(--glow-orange)),
+                0 0 80px hsl(var(--glow-orange));
+  }
+  
+  /* Hover Lift Effect */
+  .hover-lift {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-2xl;
+  }
+  
+  /* Profile Image Glow */
+  .profile-glow {
+    @apply relative;
+  }
+  
+  .profile-glow::before {
+    content: '';
+    @apply absolute inset-0 rounded-full;
+    background: linear-gradient(-45deg, 
+      hsl(var(--gradient-start)), 
+      hsl(var(--gradient-middle)), 
+      hsl(var(--gradient-end))
+    );
+    filter: blur(20px);
+    opacity: 0.7;
+    z-index: -1;
+    animation: gradientShift 8s ease infinite;
+  }
+  
+  /* Skill Card Hover */
+  .skill-card {
+    @apply glass p-6 rounded-xl hover-lift cursor-pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .skill-card:hover {
+    @apply border-primary/50;
+    transform: translateY(-8px) scale(1.02);
+  }
+  
+  /* Project Card */
+  .project-card {
+    @apply glass p-6 rounded-xl hover-lift overflow-hidden relative cursor-pointer;
+  }
+  
+  .project-card::before {
+    content: '';
+    @apply absolute inset-0 opacity-0;
+    background: linear-gradient(135deg, 
+      hsl(var(--gradient-start))/10, 
+      hsl(var(--gradient-end))/10
+    );
+    transition: opacity 0.3s ease;
+  }
+  
+  .project-card:hover::before {
+    opacity: 1;
+  }
+  
+  /* Form Styles */
+  .form-input {
+    @apply glass p-4 rounded-lg border-0 focus:ring-2 focus:ring-primary/50 focus:outline-none transition-all duration-300;
+  }
+  
+  .form-input:focus {
+    @apply shadow-lg;
+    box-shadow: 0 0 0 1px hsl(var(--primary)/0.5), 
+                0 4px 12px hsl(var(--primary)/0.15);
+  }
+}
+
+@layer utilities {
+  /* Typography Scale */
+  .text-hero {
+    @apply text-4xl md:text-6xl lg:text-7xl font-bold leading-tight;
+  }
+  
+  .text-section {
+    @apply text-2xl md:text-3xl lg:text-4xl font-semibold;
+  }
+  
+  .text-subsection {
+    @apply text-xl md:text-2xl font-medium;
+  }
+  
+  /* Spacing */
+  .section-padding {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+  
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
+
+/* Animations */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-fade-up { animation: fadeInUp 0.8s ease-out; }
+.animate-slide-left { animation: slideInLeft 0.8s ease-out; }
+.animate-slide-right { animation: slideInRight 0.8s ease-out; }
+.animate-scale-in { animation: scaleIn 0.6s ease-out; }
