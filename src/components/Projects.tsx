@@ -50,11 +50,11 @@ const Projects = () => {
           </div>
 
           {/* Projects Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 items-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-7 xl:gap-8 items-center">
             {projects.map((project, index) => (
               <Card
                 key={index}
-                className="project-card animate-fade-up"
+                className="project-card animate-entrance"
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
                 <div className="space-y-6 relative z-10">
@@ -66,15 +66,15 @@ const Projects = () => {
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-48 object-cover"
+                      className="w-full h-32 xs:h-36 sm:h-40 md:h-44 lg:h-48 object-cover transition-transform duration-300 group-hover:scale-105"
                     />
-                    <div className="absolute top-4 left-4">
-                      <span className="px-3 py-1 text-xs font-medium bg-primary/20 text-primary rounded-full backdrop-blur-sm">
+                    <div className="absolute top-2 left-2 xs:top-4 xs:left-4">
+                      <span className="px-2 xs:px-3 py-1 text-xs font-medium bg-primary/20 text-primary rounded-full backdrop-blur-sm">
                         {project.category}
                       </span>
                     </div>
-                    <div className="absolute top-4 right-4">
-                      <span className="px-3 py-1 text-xs font-medium bg-background/80 text-foreground rounded-full backdrop-blur-sm flex items-center space-x-1">
+                    <div className="absolute top-2 right-2 xs:top-4 xs:right-4">
+                      <span className="px-2 xs:px-3 py-1 text-xs font-medium bg-background/80 text-foreground rounded-full backdrop-blur-sm flex items-center space-x-1">
                         <Calendar className="w-3 h-3" />
                         <span>{project.year}</span>
                       </span>
@@ -83,10 +83,10 @@ const Projects = () => {
 
                   {/* Project Info */}
                   <div className="space-y-4">
-                    <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
+                    <h3 className="text-lg xs:text-xl font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
                       {project.title}
                     </h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed">
+                    <p className="text-muted-foreground text-xs xs:text-sm leading-relaxed">
                       {project.description}
                     </p>
 
@@ -95,7 +95,7 @@ const Projects = () => {
                       {project.technologies.map((tech, techIndex) => (
                         <span
                           key={techIndex}
-                          className="px-3 py-1 text-xs font-medium bg-muted text-muted-foreground rounded-full hover:bg-primary/20 hover:text-primary transition-all duration-300"
+                          className="px-2 xs:px-3 py-1 text-xs font-medium bg-muted text-muted-foreground rounded-full hover:bg-primary/20 hover:text-primary transition-all duration-300"
                         >
                           {tech}
                         </span>
@@ -103,12 +103,12 @@ const Projects = () => {
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex space-x-3 pt-2">
+                    <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 pt-2">
                       <Button
                         variant="gradient"
                         size="sm"
                         asChild
-                        className="flex-1"
+                        className="flex-1 touch-target"
                       >
                         <a
                           href={project.liveUrl}
@@ -116,15 +116,15 @@ const Projects = () => {
                           rel="noopener noreferrer"
                           className="flex items-center justify-center space-x-2"
                         >
-                          <ExternalLink className="w-4 h-4" />
-                          <span>Live Demo</span>
+                          <ExternalLink className="w-3 h-3 xs:w-4 xs:h-4" />
+                          <span className="text-xs xs:text-sm">Live Demo</span>
                         </a>
                       </Button>
                       <Button
                         variant="outline"
                         size="sm"
                         asChild
-                        className="flex-1"
+                        className="flex-1 touch-target"
                       >
                         <a
                           href={project.githubUrl}
@@ -132,8 +132,8 @@ const Projects = () => {
                           rel="noopener noreferrer"
                           className="flex items-center justify-center space-x-2"
                         >
-                          <Github className="w-4 h-4" />
-                          <span>Code</span>
+                          <Github className="w-3 h-3 xs:w-4 xs:h-4" />
+                          <span className="text-xs xs:text-sm">Code</span>
                         </a>
                       </Button>
                     </div>

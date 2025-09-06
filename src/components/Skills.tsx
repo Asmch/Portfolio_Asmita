@@ -40,7 +40,7 @@ const Skills = () => {
           </div>
 
           {/* Skills Categories */}
-          <div className="grid lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 xl:gap-10">
             {skillCategories.map((category, categoryIndex) => (
               <div 
                 key={categoryIndex} 
@@ -54,7 +54,7 @@ const Skills = () => {
                   {category.skills.map((skill, skillIndex) => (
                     <Card 
                       key={skillIndex} 
-                      className="skill-card"
+                      className="skill-card animate-entrance"
                       style={{ animationDelay: `${(categoryIndex * 0.2) + (skillIndex * 0.1)}s` }}
                     >
                       <div className="space-y-4">
@@ -111,14 +111,14 @@ const Skills = () => {
           {/* Additional Skills */}
           <div className="text-center space-y-8 animate-fade-up" style={{ animationDelay: '0.6s' }}>
             <h3 className="text-subsection text-foreground font-semibold">Additional Tools & Technologies</h3>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-2 xs:gap-3 sm:gap-4">
               {[
                 'Java', 'Python', 'VS Code', 'Acentricity UI', 'Vercel', 'DSA', 
                 'Postman', 'Responsive Design', 'Web Performance', 'SEO'
               ].map((tool, index) => (
                 <div
                   key={index}
-                  className="glass px-4 py-2 rounded-full text-sm font-medium text-muted-foreground hover:text-primary hover:border-primary/30 transition-all duration-300 hover-lift cursor-pointer"
+                  className="glass px-2 xs:px-3 sm:px-4 py-1 xs:py-2 rounded-full text-xs xs:text-sm font-medium text-muted-foreground hover:text-primary hover:border-primary/30 transition-all duration-300 hover-lift-touch cursor-pointer touch-target animate-entrance"
                   style={{ animationDelay: `${0.8 + (index * 0.05)}s` }}
                 >
                   {tool}

@@ -55,38 +55,38 @@ const Services = () => {
           </div>
 
           {/* Services Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-7 xl:gap-8">
             {services.map((service, index) => (
               <Card 
                 key={index} 
-                className="service-card glass p-8 hover:border-primary/30 transition-all duration-300 hover-lift group animate-fade-up"
+                className="service-card glass p-4 xs:p-6 sm:p-8 hover:border-primary/30 transition-all duration-300 hover-lift-touch group animate-entrance"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="space-y-6">
                   {/* Service Icon */}
-                  <div className="p-4 rounded-2xl bg-gradient-to-r from-gradient-start/20 to-gradient-end/20 w-fit group-hover:from-gradient-start/30 group-hover:to-gradient-end/30 transition-all duration-300">
-                    <service.icon className="w-8 h-8 text-primary" />
+                  <div className="p-3 xs:p-4 rounded-2xl bg-gradient-to-r from-gradient-start/20 to-gradient-end/20 w-fit group-hover:from-gradient-start/30 group-hover:to-gradient-end/30 transition-all duration-300">
+                    <service.icon className="w-6 h-6 xs:w-7 xs:h-7 sm:w-8 sm:h-8 text-primary" />
                   </div>
 
                   {/* Service Info */}
                   <div className="space-y-4">
-                    <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
+                    <h3 className="text-lg xs:text-xl font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
                       {service.title}
                     </h3>
-                    <p className="text-muted-foreground leading-relaxed">
+                    <p className="text-muted-foreground text-sm xs:text-base leading-relaxed">
                       {service.description}
                     </p>
 
                     {/* Service Features */}
                     <div className="space-y-2">
-                      <h4 className="text-sm font-medium text-foreground">Key Features:</h4>
+                      <h4 className="text-xs xs:text-sm font-medium text-foreground">Key Features:</h4>
                       <ul className="space-y-1">
                         {service.features.map((feature, featureIndex) => (
                           <li 
                             key={featureIndex} 
-                            className="text-sm text-muted-foreground flex items-center space-x-2"
+                            className="text-xs xs:text-sm text-muted-foreground flex items-center space-x-2"
                           >
-                            <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-gradient-start to-gradient-end" />
+                            <div className="w-1 h-1 xs:w-1.5 xs:h-1.5 rounded-full bg-gradient-to-r from-gradient-start to-gradient-end flex-shrink-0" />
                             <span>{feature}</span>
                           </li>
                         ))}
@@ -106,16 +106,16 @@ const Services = () => {
                 Let's collaborate to create something amazing together. Whether you need a simple website or a complex web application, 
                 I'm here to help bring your ideas to life with cutting-edge technology and creative solutions.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col xs:flex-row gap-3 xs:gap-4 justify-center">
                 <a 
                   href="#contact"
-                  className="inline-flex items-center justify-center px-8 py-3 bg-gradient-to-r from-gradient-start via-gradient-middle to-gradient-end text-white font-semibold rounded-xl hover:scale-105 hover:shadow-2xl transition-all duration-300"
+                  className="inline-flex items-center justify-center px-6 xs:px-8 py-3 bg-gradient-to-r from-gradient-start via-gradient-middle to-gradient-end text-white font-semibold rounded-xl hover:scale-105 hover:shadow-2xl transition-all duration-300 touch-target"
                 >
                   Get Started Today
                 </a>
                 <a 
                   href="#portfolio"
-                  className="inline-flex items-center justify-center px-8 py-3 border-2 border-primary text-primary font-semibold rounded-xl hover:bg-primary/10 transition-all duration-300"
+                  className="inline-flex items-center justify-center px-6 xs:px-8 py-3 border-2 border-primary text-primary font-semibold rounded-xl hover:bg-primary/10 transition-all duration-300 touch-target"
                 >
                   View My Work
                 </a>

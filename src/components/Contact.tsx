@@ -98,7 +98,7 @@ const Contact = () => {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 xl:gap-10">
             {/* Contact Information */}
             <div className="space-y-8 animate-slide-left">
               <div className="space-y-6">
@@ -114,7 +114,8 @@ const Contact = () => {
                 {contactInfo.map((info, index) => (
                   <Card 
                     key={index} 
-                    className="glass p-6 hover:border-primary/30 transition-all duration-300 hover-lift group"
+                    className="glass p-6 hover:border-primary/30 transition-all duration-300 hover-lift-touch group animate-entrance"
+                    style={{ animationDelay: `${index * 0.1}s` }}
                   >
                     <div className="flex items-start space-x-4">
                       <div className="p-3 rounded-lg bg-gradient-to-r from-gradient-start/20 to-gradient-end/20 group-hover:from-gradient-start/30 group-hover:to-gradient-end/30 transition-all duration-300">
@@ -135,18 +136,18 @@ const Contact = () => {
 
             {/* Contact Form */}
             <div className="animate-slide-right">
-              <Card className="glass p-8">
+              <Card className="glass p-4 xs:p-6 sm:p-8">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="space-y-2">
-                    <h3 className="text-subsection text-foreground font-semibold">Send a Message</h3>
-                    <p className="text-muted-foreground">
+                    <h3 className="text-lg xs:text-xl sm:text-2xl text-foreground font-semibold">Send a Message</h3>
+                    <p className="text-muted-foreground text-sm xs:text-base">
                       Fill out the form below and I'll get back to you as soon as possible.
                     </p>
                   </div>
 
-                  <div className="grid md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 xs:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="name" className="text-foreground">Name *</Label>
+                      <Label htmlFor="name" className="text-foreground text-sm xs:text-base">Name *</Label>
                       <Input
                         id="name"
                         name="name"
@@ -154,7 +155,7 @@ const Contact = () => {
                         placeholder="Your full name"
                         value={formData.name}
                         onChange={handleInputChange}
-                        className="form-input"
+                        className="form-input touch-target text-sm xs:text-base"
                         required
                       />
                     </div>
@@ -167,7 +168,7 @@ const Contact = () => {
                         placeholder="your.email@example.com"
                         value={formData.email}
                         onChange={handleInputChange}
-                        className="form-input"
+                        className="form-input touch-target text-sm xs:text-base"
                         required
                       />
                     </div>
@@ -204,7 +205,7 @@ const Contact = () => {
                     type="submit" 
                     variant="gradient" 
                     size="lg" 
-                    className="w-full"
+                    className="w-full touch-target transition-all duration-300 hover:scale-105"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (

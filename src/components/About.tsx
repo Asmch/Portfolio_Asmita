@@ -66,24 +66,25 @@ const About = () => {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 xs:gap-5 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-12 items-start">
             {/* Personal Information */}
             <div className="space-y-8 animate-slide-left">
               <div className="space-y-6">
-                <h3 className="text-subsection text-foreground font-semibold">Get in Touch</h3>
-                <div className="grid gap-4">
+                <h3 className="text-lg xs:text-xl sm:text-2xl text-foreground font-semibold">Get in Touch</h3>
+                <div className="grid gap-3 xs:gap-4">
                   {contactInfo.map((info, index) => (
                     <a
                       key={index}
                       href={info.href}
-                      className="group flex items-center space-x-4 p-4 glass rounded-xl hover:border-primary/30 transition-all duration-300 hover-lift"
+                      className="group flex items-center space-x-3 xs:space-x-4 p-3 xs:p-4 glass rounded-xl hover:border-primary/30 transition-all duration-300 hover-lift-touch touch-target animate-entrance"
+                      style={{ animationDelay: `${index * 0.1}s` }}
                     >
-                      <div className="p-3 rounded-lg bg-gradient-to-r from-gradient-start/20 to-gradient-end/20 group-hover:from-gradient-start/30 group-hover:to-gradient-end/30 transition-all duration-300">
-                        <info.icon className="w-5 h-5 text-primary" />
+                      <div className="p-2 xs:p-3 rounded-lg bg-gradient-to-r from-gradient-start/20 to-gradient-end/20 group-hover:from-gradient-start/30 group-hover:to-gradient-end/30 transition-all duration-300 flex-shrink-0">
+                        <info.icon className="w-4 h-4 xs:w-5 xs:h-5 text-primary" />
                       </div>
-                      <div>
-                        <p className="text-sm text-muted-foreground">{info.label}</p>
-                        <p className="text-foreground font-medium group-hover:text-primary transition-colors duration-300">
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs xs:text-sm text-muted-foreground">{info.label}</p>
+                        <p className="text-xs xs:text-sm sm:text-base text-foreground font-medium group-hover:text-primary transition-colors duration-300 break-all">
                           {info.value}
                         </p>
                       </div>
@@ -96,25 +97,25 @@ const About = () => {
             {/* Education & Achievements */}
             <div className="space-y-8 animate-slide-right">
               <div className="space-y-6">
-                <h3 className="text-subsection text-foreground font-semibold">Education & Experience</h3>
-                <div className="space-y-6">
+                <h3 className="text-lg xs:text-xl sm:text-2xl text-foreground font-semibold">Education & Experience</h3>
+                <div className="space-y-4 xs:space-y-5 sm:space-y-6">
                   {achievements.map((achievement, index) => (
-                    <Card key={index} className="glass p-6 hover:border-primary/30 transition-all duration-300 hover-lift group">
-                      <div className="flex items-start space-x-4">
-                        <div className="p-3 rounded-lg bg-gradient-to-r from-gradient-start/20 to-gradient-end/20 group-hover:from-gradient-start/30 group-hover:to-gradient-end/30 transition-all duration-300">
-                          <achievement.icon className="w-6 h-6 text-primary" />
+                    <Card key={index} className="glass p-4 xs:p-6 hover:border-primary/30 transition-all duration-300 hover-lift-touch group animate-entrance" style={{ animationDelay: `${index * 0.1}s` }}>
+                      <div className="flex items-start space-x-3 xs:space-x-4">
+                        <div className="p-2 xs:p-3 rounded-lg bg-gradient-to-r from-gradient-start/20 to-gradient-end/20 group-hover:from-gradient-start/30 group-hover:to-gradient-end/30 transition-all duration-300 flex-shrink-0">
+                          <achievement.icon className="w-5 h-5 xs:w-6 xs:h-6 text-primary" />
                         </div>
                         <div className="flex-1 space-y-2">
                           <div className="flex items-center justify-between">
-                            <h4 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
+                            <h4 className="text-base xs:text-lg font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
                               {achievement.title}
                             </h4>
-                            <span className="text-sm text-muted-foreground font-medium">
+                            <span className="text-xs xs:text-sm text-muted-foreground font-medium">
                               {achievement.year}
                             </span>
                           </div>
-                          <p className="text-primary font-medium">{achievement.subtitle}</p>
-                          <p className="text-muted-foreground">{achievement.detail}</p>
+                          <p className="text-sm xs:text-base text-primary font-medium">{achievement.subtitle}</p>
+                          <p className="text-xs xs:text-sm text-muted-foreground">{achievement.detail}</p>
                         </div>
                       </div>
                     </Card>

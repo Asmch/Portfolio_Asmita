@@ -63,10 +63,17 @@
   body {
     @apply bg-background text-foreground font-poppins;
     font-feature-settings: "rlig" 1, "calt" 1;
+    background-attachment: fixed;
   }
   
   html {
     scroll-behavior: smooth;
+    background: hsl(var(--background));
+  }
+  
+  /* Ensure proper background coverage */
+  #root {
+    @apply bg-background min-h-screen;
   }
 }
 
@@ -111,10 +118,39 @@
                 0 0 80px hsl(var(--glow-orange));
   }
   
-  /* Hover Lift Effect */
+  /* Enhanced Hover Lift Effect */
   .hover-lift {
-    @apply transition-all duration-300 hover:scale-105 hover:shadow-2xl;
+    @apply transition-all duration-300 ease-out hover:scale-105 hover:shadow-2xl;
   }
+  
+  /* Smooth entrance animations */
+  .animate-entrance {
+    animation: entrance 0.8s ease-out forwards;
+  }
+  
+  .animate-entrance-delay-1 {
+    animation: entrance 0.8s ease-out 0.1s both;
+  }
+  
+  .animate-entrance-delay-2 {
+    animation: entrance 0.8s ease-out 0.2s both;
+  }
+  
+  .animate-entrance-delay-3 {
+    animation: entrance 0.8s ease-out 0.3s both;
+  }
+  
+  /* Staggered animations for lists */
+  .animate-stagger > * {
+    animation: entrance 0.6s ease-out both;
+  }
+  
+  .animate-stagger > *:nth-child(1) { animation-delay: 0.1s; }
+  .animate-stagger > *:nth-child(2) { animation-delay: 0.2s; }
+  .animate-stagger > *:nth-child(3) { animation-delay: 0.3s; }
+  .animate-stagger > *:nth-child(4) { animation-delay: 0.4s; }
+  .animate-stagger > *:nth-child(5) { animation-delay: 0.5s; }
+  .animate-stagger > *:nth-child(6) { animation-delay: 0.6s; }
   
   /* Profile Image Glow */
   .profile-glow {
@@ -129,10 +165,41 @@
       hsl(var(--gradient-middle)), 
       hsl(var(--gradient-end))
     );
-    filter: blur(20px);
+    filter: blur(12px);
     opacity: 0.7;
     z-index: -1;
     animation: gradientShift 8s ease infinite;
+    transform: scale(1.05);
+  }
+  
+  .profile-glow::after {
+    content: '';
+    @apply absolute inset-0 rounded-full;
+    background: linear-gradient(-45deg, 
+      hsl(var(--gradient-start)/0.2), 
+      hsl(var(--gradient-middle)/0.2), 
+      hsl(var(--gradient-end)/0.2)
+    );
+    filter: blur(20px);
+    opacity: 0.5;
+    z-index: -2;
+    animation: gradientShift 12s ease infinite reverse;
+    transform: scale(1.2);
+  }
+  
+  /* Mobile-specific profile glow adjustments */
+  @media (max-width: 640px) {
+    .profile-glow::before {
+      filter: blur(8px);
+      opacity: 0.6;
+      transform: scale(1.02);
+    }
+    
+    .profile-glow::after {
+      filter: blur(15px);
+      opacity: 0.4;
+      transform: scale(1.1);
+    }
   }
   
   /* Skill Card Hover */
@@ -178,26 +245,156 @@
 }
 
 @layer utilities {
-  /* Typography Scale */
+  /* Enhanced Typography Scale for All Devices */
   .text-hero {
-    @apply text-4xl md:text-6xl lg:text-7xl font-bold leading-tight;
+    @apply text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold leading-tight;
   }
   
   .text-section {
-    @apply text-2xl md:text-3xl lg:text-4xl font-semibold;
+    @apply text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold;
   }
   
   .text-subsection {
-    @apply text-xl md:text-2xl font-medium;
+    @apply text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium;
   }
   
-  /* Spacing */
+  /* Mobile-optimized text sizes */
+  .text-mobile-sm {
+    @apply text-xs xs:text-sm;
+  }
+  
+  .text-mobile-base {
+    @apply text-sm xs:text-base;
+  }
+  
+  .text-mobile-lg {
+    @apply text-base xs:text-lg sm:text-xl;
+  }
+  
+  /* Enhanced Spacing for All Devices */
   .section-padding {
-    @apply py-16 md:py-24 lg:py-32;
+    @apply py-8 xs:py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28 2xl:py-32;
   }
   
   .container-custom {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply max-w-7xl mx-auto px-3 xs:px-4 sm:px-5 md:px-6 lg:px-8 xl:px-10 2xl:px-12;
+  }
+  
+  /* Mobile-specific spacing */
+  .mobile-padding {
+    @apply px-3 xs:px-4 sm:px-5;
+  }
+  
+  .mobile-margin {
+    @apply mx-2 xs:mx-3 sm:mx-4;
+  }
+  
+  /* Enhanced Responsive Grid Utilities */
+  .grid-responsive {
+    @apply grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 xs:gap-4 sm:gap-5 md:gap-6 lg:gap-7 xl:gap-8;
+  }
+  
+  .grid-responsive-2 {
+    @apply grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4 xs:gap-5 sm:gap-6 md:gap-7 lg:gap-8 xl:gap-10;
+  }
+  
+  .grid-responsive-3 {
+    @apply grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 xs:gap-5 sm:gap-6 md:gap-7 lg:gap-8;
+  }
+  
+  /* Tablet-specific responsive grids */
+  .grid-tablet-responsive {
+    @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-7;
+  }
+  
+  .grid-tablet-2 {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6 lg:gap-8;
+  }
+  
+  /* Tablet-specific grids */
+  .grid-tablet {
+    @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-7;
+  }
+  
+  /* Mobile-first grids */
+  .grid-mobile {
+    @apply grid grid-cols-1 gap-4 xs:gap-5;
+  }
+  
+  /* Touch-friendly sizing */
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+  
+  /* Smooth scroll behavior */
+  .smooth-scroll {
+    scroll-behavior: smooth;
+  }
+  
+  /* Enhanced hover states for touch devices */
+  .hover-lift-touch {
+    @apply transition-all duration-300 ease-out;
+  }
+  
+  @media (hover: hover) {
+    .hover-lift-touch:hover {
+      @apply scale-105 shadow-2xl;
+    }
+  }
+  
+  @media (hover: none) {
+    .hover-lift-touch:active {
+      @apply scale-95;
+    }
+  }
+  
+  /* Mobile-specific improvements */
+  @media (max-width: 640px) {
+    .mobile-optimize {
+      @apply text-sm leading-relaxed;
+    }
+    
+    .mobile-spacing {
+      @apply space-y-4;
+    }
+    
+    .mobile-padding-sm {
+      @apply px-2 py-1;
+    }
+  }
+  
+  /* Tablet-specific improvements */
+  @media (min-width: 640px) and (max-width: 1024px) {
+    .tablet-optimize {
+      @apply text-base leading-relaxed;
+    }
+    
+    .tablet-spacing {
+      @apply space-y-6;
+    }
+    
+    .tablet-padding {
+      @apply px-4 py-3;
+    }
+    
+    .tablet-gap {
+      @apply gap-5;
+    }
+  }
+  
+  /* Medium tablet specific (768px - 1023px) */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .tablet-md-optimize {
+      @apply text-lg leading-relaxed;
+    }
+    
+    .tablet-md-spacing {
+      @apply space-y-8;
+    }
+    
+    .tablet-md-gap {
+      @apply gap-6;
+    }
   }
 }
 
@@ -257,8 +454,95 @@
   }
 }
 
+@keyframes entrance {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 53%, 80%, 100% {
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    transform: translate3d(0,0,0);
+  }
+  40%, 43% {
+    animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    transform: translate3d(0, -30px, 0);
+  }
+  70% {
+    animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    transform: translate3d(0, -15px, 0);
+  }
+  90% {
+    transform: translate3d(0,-4px,0);
+  }
+}
+
 .animate-float { animation: float 6s ease-in-out infinite; }
 .animate-fade-up { animation: fadeInUp 0.8s ease-out; }
 .animate-slide-left { animation: slideInLeft 0.8s ease-out; }
 .animate-slide-right { animation: slideInRight 0.8s ease-out; }
 .animate-scale-in { animation: scaleIn 0.6s ease-out; }
+.animate-entrance { animation: entrance 0.8s ease-out; }
+.animate-slide-up { animation: slideInUp 0.8s ease-out; }
+.animate-slide-down { animation: slideInDown 0.8s ease-out; }
+.animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+.animate-bounce { animation: bounce 1s infinite; }
