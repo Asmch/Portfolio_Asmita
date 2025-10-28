@@ -20,21 +20,21 @@ const Projects = () => {
       description: 'Built an interactive Time Capsule web application enabling users to create, store, and unlock digital capsules with text, photos, and videos, featuring scheduled future delivery for a personalized memory-sharing experience.',
       image: '/asmiverse.png',
       technologies: ['Next.js', 'MongoDB', 'Node.js', 'TypeScript','NextAuth.js','Socket.io'],
-      liveUrl: 'https://asmiverse-timecapsule.vercel.app',
+      liveUrl: 'https://asmiversecapsule.vercel.app/',
       githubUrl: 'https://github.com/asmitakumari/asmiverse-timecapsule',
       category: 'Full Stack',
       year: '2024'
     },
     {
-      title: 'To-Do List App',
-      description: 'A simple and intuitive task management tool built with React and TailwindCSS. Designed with a sleek and responsive UI, it helps users stay organized, manage daily tasks efficiently, and boost productivity.',
-      image: '/To-Do List.png',
-      technologies: ['React', 'Typescript', 'MongoDB', 'Context API','Git'],
-      liveUrl: 'https://github.com/Asmch/Todo-list.git',
-      githubUrl: 'https://github.com/Asmch/Todo-list.git',
-      category: 'React Development',
-      year: '2023'
-    }
+      title: 'SecureVault',
+      description: 'Built a secure password management application with Next.js, featuring encrypted password storage, CRUD operations, tag-based filtering, and 2FA support for enhanced data protection.',
+      image: '/secureVault.png',
+      technologies: ['React', 'Tailwind CSS', 'TypeScript', 'Responsive Design'],
+      liveUrl: 'https://password-vault-murex.vercel.app/',
+      githubUrl: 'https://github.com/Asmch/Password-Vault.git',
+      category: 'Full Stack',
+      year: '2025'
+    },
   ];
 
   return (
