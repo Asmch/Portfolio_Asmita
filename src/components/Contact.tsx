@@ -87,46 +87,48 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="section-padding bg-gradient-to-b from-background to-muted/20">
+    <section id="contact" className="section-padding bg-gradient-to-b from-background to-muted/20 relative">
+      {/* Section Divider */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
       <div className="container-custom">
-        <div className="space-y-16">
+        <div className="space-y-8 xs:space-y-10 sm:space-y-12 md:space-y-14 lg:space-y-16">
           {/* Section Header */}
-          <div className="text-center space-y-4">
+          <div className="text-center space-y-3 xs:space-y-4">
             <h2 className="text-section gradient-text animate-fade-up">Get In Touch</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto animate-fade-up" style={{ animationDelay: '0.1s' }}>
+            <p className="text-sm xs:text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto animate-fade-up px-2 xs:px-3" style={{ animationDelay: '0.1s' }}>
               Ready to start your next project? Let's discuss how we can work together to bring your ideas to life.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 xl:gap-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 xs:gap-7 sm:gap-8 lg:gap-10 xl:gap-12">
             {/* Contact Information */}
-            <div className="space-y-8 animate-slide-left">
-              <div className="space-y-6">
-                <h3 className="text-subsection text-foreground font-semibold">Let's Connect</h3>
-                <p className="text-muted-foreground leading-relaxed">
+            <div className="space-y-6 xs:space-y-7 sm:space-y-8 animate-slide-left">
+              <div className="space-y-4 xs:space-y-5 sm:space-y-6">
+                <h3 className="text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl text-foreground font-semibold">Let's Connect</h3>
+                <p className="text-xs xs:text-sm sm:text-base text-muted-foreground leading-relaxed">
                   I'm always excited to work on new projects and collaborate with amazing people. 
                   Whether you have a specific project in mind or just want to chat about technology, 
                   feel free to reach out!
                 </p>
               </div>
 
-              <div className="grid gap-6">
+              <div className="grid gap-4 xs:gap-5 sm:gap-6">
                 {contactInfo.map((info, index) => (
                   <Card 
                     key={index} 
-                    className="glass p-6 hover:border-primary/30 transition-all duration-300 hover-lift-touch group animate-entrance"
+                    className="glass p-4 xs:p-5 sm:p-6 hover:border-primary/30 transition-all duration-300 hover-lift-touch group animate-entrance"
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
-                    <div className="flex items-start space-x-4">
-                      <div className="p-3 rounded-lg bg-gradient-to-r from-gradient-start/20 to-gradient-end/20 group-hover:from-gradient-start/30 group-hover:to-gradient-end/30 transition-all duration-300">
-                        <info.icon className="w-6 h-6 text-primary" />
+                    <div className="flex items-start space-x-3 xs:space-x-3.5 sm:space-x-4">
+                      <div className="p-2.5 xs:p-3 rounded-lg bg-gradient-to-r from-gradient-start/20 to-gradient-end/20 group-hover:from-gradient-start/30 group-hover:to-gradient-end/30 transition-all duration-300 flex-shrink-0">
+                        <info.icon className="w-5 h-5 xs:w-5.5 xs:h-5.5 sm:w-6 sm:h-6 text-primary" />
                       </div>
-                      <div className="space-y-1">
-                        <h4 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
+                      <div className="space-y-1 flex-1 min-w-0">
+                        <h4 className="text-base xs:text-lg sm:text-xl font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
                           {info.title}
                         </h4>
-                        <p className="text-foreground font-medium">{info.content}</p>
-                        <p className="text-sm text-muted-foreground">{info.subtext}</p>
+                        <p className="text-sm xs:text-base text-foreground font-medium break-words">{info.content}</p>
+                        <p className="text-xs xs:text-sm text-muted-foreground">{info.subtext}</p>
                       </div>
                     </div>
                   </Card>
@@ -136,18 +138,18 @@ const Contact = () => {
 
             {/* Contact Form */}
             <div className="animate-slide-right">
-              <Card className="glass p-4 xs:p-6 sm:p-8">
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="space-y-2">
-                    <h3 className="text-lg xs:text-xl sm:text-2xl text-foreground font-semibold">Send a Message</h3>
-                    <p className="text-muted-foreground text-sm xs:text-base">
+              <Card className="glass p-4 xs:p-5 sm:p-6 md:p-8">
+                <form onSubmit={handleSubmit} className="space-y-4 xs:space-y-5 sm:space-y-6">
+                  <div className="space-y-1.5 xs:space-y-2">
+                    <h3 className="text-base xs:text-lg sm:text-xl md:text-2xl text-foreground font-semibold">Send a Message</h3>
+                    <p className="text-xs xs:text-sm sm:text-base text-muted-foreground">
                       Fill out the form below and I'll get back to you as soon as possible.
                     </p>
                   </div>
 
-                  <div className="grid grid-cols-1 xs:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="name" className="text-foreground text-sm xs:text-base">Name *</Label>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 xs:gap-4">
+                    <div className="space-y-1.5 xs:space-y-2 sm:col-span-1">
+                      <Label htmlFor="name" className="text-xs xs:text-sm sm:text-base text-foreground">Name *</Label>
                       <Input
                         id="name"
                         name="name"
@@ -155,12 +157,12 @@ const Contact = () => {
                         placeholder="Your full name"
                         value={formData.name}
                         onChange={handleInputChange}
-                        className="form-input touch-target text-sm xs:text-base"
+                        className="form-input touch-target text-xs xs:text-sm sm:text-base h-10 xs:h-11 sm:h-12"
                         required
                       />
                     </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="email" className="text-foreground">Email *</Label>
+                    <div className="space-y-1.5 xs:space-y-2 sm:col-span-1">
+                      <Label htmlFor="email" className="text-xs xs:text-sm sm:text-base text-foreground">Email *</Label>
                       <Input
                         id="email"
                         name="email"
@@ -168,14 +170,14 @@ const Contact = () => {
                         placeholder="your.email@example.com"
                         value={formData.email}
                         onChange={handleInputChange}
-                        className="form-input touch-target text-sm xs:text-base"
+                        className="form-input touch-target text-xs xs:text-sm sm:text-base h-10 xs:h-11 sm:h-12"
                         required
                       />
                     </div>
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="subject" className="text-foreground">Subject *</Label>
+                  <div className="space-y-1.5 xs:space-y-2">
+                    <Label htmlFor="subject" className="text-xs xs:text-sm sm:text-base text-foreground">Subject *</Label>
                     <Input
                       id="subject"
                       name="subject"
@@ -183,20 +185,20 @@ const Contact = () => {
                       placeholder="What is this regarding?"
                       value={formData.subject}
                       onChange={handleInputChange}
-                      className="form-input"
+                      className="form-input text-xs xs:text-sm sm:text-base h-10 xs:h-11 sm:h-12"
                       required
                     />
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="message" className="text-foreground">Message *</Label>
+                  <div className="space-y-1.5 xs:space-y-2">
+                    <Label htmlFor="message" className="text-xs xs:text-sm sm:text-base text-foreground">Message *</Label>
                     <Textarea
                       id="message"
                       name="message"
                       placeholder="Tell me about your project or how I can help..."
                       value={formData.message}
                       onChange={handleInputChange}
-                      className="form-input min-h-[120px] resize-none"
+                      className="form-input min-h-[100px] xs:min-h-[120px] sm:min-h-[140px] resize-none text-xs xs:text-sm sm:text-base"
                       required
                     />
                   </div>
@@ -205,7 +207,7 @@ const Contact = () => {
                     type="submit" 
                     variant="gradient" 
                     size="lg" 
-                    className="w-full touch-target transition-all duration-300 hover:scale-105"
+                    className="w-full touch-target transition-all duration-300 hover:scale-105 text-xs xs:text-sm sm:text-base h-11 xs:h-12 sm:h-14"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (
@@ -215,7 +217,7 @@ const Contact = () => {
                       </>
                     ) : (
                       <>
-                        <Send className="w-5 h-5 mr-2" />
+                        <Send className="w-4 h-4 xs:w-5 xs:h-5 mr-2" />
                         Send Message
                       </>
                     )}
