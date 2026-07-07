@@ -33,7 +33,6 @@ Here are some of the key projects featured in my portfolio:
 - **[ContractSense](https://contractsense-sand.vercel.app/) (Flagship)**: An AI-powered LegalTech SaaS platform for contract analysis. Features a chunked document-parsing pipeline for large PDFs, adaptive batching, and streaming Q&A responses via Vercel AI SDK. Built with Next.js, Node.js, MongoDB, and Gemini.
 - **[SecureVault](https://password-vault-murex.vercel.app/)**: An encrypted password and note management platform featuring JWT-authenticated routes, AES-encrypted storage, TOTP two-factor authentication, and k-anonymity breach-checking.
 - **[API Rate Limiter](https://github.com/Asmch/API-RATE-LIMITER-SERVICE)**: A Dockerized, distributed-safe rate-limiting microservice built with Node.js and Redis. Uses Token Bucket and Sliding Window algorithms with a fail-open circuit breaker fallback.
-- **[DSL Bazar](https://www.dslbazar.com/) (Client Work)**: A service-based site built for straightforward browsing and inquiries, with a service catalog structured for easy scaling.
 
 ---
 Thank You! 😊  
