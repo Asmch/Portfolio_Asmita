@@ -6,30 +6,30 @@ import { ExternalLink, Github, Calendar, Code2 } from 'lucide-react';
 const Projects = () => {
   const projects = [
     {
-      title: 'Academy Landing Page',
-      description: 'Built a modern, responsive Academy Landing Page using React and Tailwind CSS, featuring interactive UI components, animations, and a clean layout to showcase educational offerings.',
-      image: '/Academy.png',
-      technologies: ['React', 'Tailwind CSS', 'TypeScript', 'Responsive Design'],
-      liveUrl: 'https://landing-page-academy-qoza1w7rg.vercel.app/',
-      githubUrl: 'https://github.com/Asmch/LandingPage-Academy.git',
-      category: 'Frontend',
+      title: 'ContractSense | AI-Powered Contract Analysis Platform (LegalTech SaaS)',
+      description: 'Architected REST APIs and 5 task-specific AI pipelines (clause extraction, risk scoring, executive summaries). Engineered chunked document-parsing up to 100 pages. Streamed responses token-by-token via Vercel AI SDK.',
+      image: '/ContractSense.png',
+      technologies: ['Next.js', 'TypeScript', 'Node.js', 'MongoDB', 'Gemini', 'Vercel AI SDK'],
+      liveUrl: '#',
+      githubUrl: '#',
+      category: 'Full Stack',
       year: '2025'
     },
     {
-      title: 'AsmiVerse Time Capsule',
-      description: 'Built an interactive Time Capsule web application enabling users to create, store, and unlock digital capsules with text, photos, and videos, featuring scheduled future delivery for a personalized memory-sharing experience.',
-      image: '/asmiverse.png',
-      technologies: ['Next.js', 'MongoDB', 'Node.js', 'TypeScript','NextAuth.js','Socket.io'],
-      liveUrl: 'https://asmiversecapsule.vercel.app/',
-      githubUrl: 'https://github.com/asmitakumari/asmiverse-timecapsule',
-      category: 'Full Stack',
-      year: '2024'
+      title: 'API Rate Limiter Service',
+      description: 'Built a distributed-safe rate-limiting microservice exposing endpoints for per-key/user/IP throttling. Implemented Token Bucket and Sliding Window algorithms as atomic Redis Lua scripts.',
+      image: '/api-limiter.png',
+      technologies: ['Node.js', 'Express', 'Redis', 'Docker', 'Jest/Supertest'],
+      liveUrl: '#',
+      githubUrl: '#',
+      category: 'Backend',
+      year: '2025'
     },
     {
       title: 'SecureVault',
-      description: 'Built a secure password management application with Next.js, featuring encrypted password storage, CRUD operations, tag-based filtering, and 2FA support for enhanced data protection.',
+      description: 'Encrypted Password & Note Management Platform. Built JWT-authenticated routes with AES-encrypted storage. Implemented TOTP-based 2FA and k-anonymity breach-checking via range queries.',
       image: '/secureVault.png',
-      technologies: ['React', 'Tailwind CSS', 'TypeScript', 'Responsive Design'],
+      technologies: ['Next.js', 'TypeScript', 'MongoDB', 'JWT', 'CryptoJS', 'Speakeasy'],
       liveUrl: 'https://password-vault-murex.vercel.app/',
       githubUrl: 'https://github.com/Asmch/Password-Vault.git',
       category: 'Full Stack',

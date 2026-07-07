@@ -1,230 +1,89 @@
 import React, { useState } from 'react';
-import { Card } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Label } from '@/components/ui/label';
-import { useToast } from '@/components/ui/use-toast';
-import { Mail, MapPin, Clock, Send, Phone } from 'lucide-react';
-import emailjs from '@emailjs/browser';
-
+import { toast } from 'sonner';
 
 const Contact = () => {
-  const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
+  const [loading, setLoading] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitting(true);
+    setLoading(true);
 
-    // Simulate form submission
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      subject: formData.get('subject'),
+      message: formData.get('message'),
+    };
+
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      await emailjs.send(
-      'service_0t25xdp', // Your Service ID
-      'template_bzh1ezm', // Your Template ID
-      {
-        user_name: formData.name,
-        user_email: formData.email,
-        subject: formData.subject,
-        message: formData.message
-      },
-      'HPG_Ct9T14oGI87Il' // Your Public Key / User ID
-    );
-      toast({
-        title: "Message Sent Successfully!",
-        description: "Thank you for reaching out. I'll get back to you soon.",
+      const response = await fetch("https://formsubmit.co/ajax/asmitachoudhary08@gmail.com", {
+        method: "POST",
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(data)
       });
-      
-      setFormData({ name: '', email: '', subject: '', message: '' });
+
+      if (response.ok) {
+        toast.success("Message sent successfully!");
+        (e.target as HTMLFormElement).reset();
+      } else {
+        toast.error("Failed to send message. Please try again later.");
+      }
     } catch (error) {
-      toast({
-        title: "Error",
-        description: "Something went wrong. Please try again.",
-        variant: "destructive",
-      });
+      toast.error("An error occurred. Please check your connection and try again.");
     } finally {
-      setIsSubmitting(false);
+      setLoading(false);
     }
   };
-
-  const contactInfo = [
-    {
-      icon: Mail,
-      title: 'Email',
-      content: 'asmitachoudhary08@gmail.com',
-      subtext: 'Send me an email anytime'
-    },
-    {
-      icon: Phone,
-      title: 'Phone',
-      content: '+91 7061333651',
-      subtext: 'Available Mon-Sun 9AM-6PM'
-    },
-    {
-      icon: MapPin,
-      title: 'Location',
-      content: 'India',
-      subtext: 'Available for remote work'
-    },
-    {
-      icon: Clock,
-      title: 'Response Time',
-      content: '12-24 hours',
-      subtext: 'I typically respond quickly'
-    }
-  ];
-
   return (
-    <section id="contact" className="section-padding bg-gradient-to-b from-background to-muted/20 relative">
-      {/* Section Divider */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
-      <div className="container-custom">
-        <div className="space-y-8 xs:space-y-10 sm:space-y-12 md:space-y-14 lg:space-y-16">
-          {/* Section Header */}
-          <div className="text-center space-y-3 xs:space-y-4">
-            <h2 className="text-section gradient-text animate-fade-up">Get In Touch</h2>
-            <p className="text-sm xs:text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto animate-fade-up px-2 xs:px-3" style={{ animationDelay: '0.1s' }}>
-              Ready to start your next project? Let's discuss how we can work together to bring your ideas to life.
-            </p>
+    <section className="contact" id="contact">
+      <div className="wrap">
+        <div className="eyebrow"><span className="num">06</span> // contact</div>
+        <div className="contact-grid">
+          <div className="contact-info reveal">
+            <div className="contact-status"><span className="dot"></span>Currently available</div>
+            <h3>Let's build something</h3>
+            <p>Open to full-time roles and freelance work. Usually replies within a day.</p>
+            
+            <div className="info-item">
+              <div className="ii-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6 10 7 10-7"/></svg></div>
+              <div><span className="ii-label">email</span><div className="ii-value">asmitachoudhary08@gmail.com</div></div>
+            </div>
+            <div className="info-item">
+              <div className="ii-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+              <div><span className="ii-label">phone</span><div className="ii-value">+91 7061333651</div></div>
+            </div>
+            <div className="info-item">
+              <div className="ii-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+              <div><span className="ii-label">location</span><div className="ii-value">India · Available for remote work</div></div>
+            </div>
+            <div className="info-item">
+              <div className="ii-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+              <div><span className="ii-label">response time</span><div className="ii-value">12–24 hours</div></div>
+            </div>
+            
+            <div className="contact-social">
+              <a href="https://github.com/Asmch" target="_blank" rel="noreferrer">GitHub</a>
+              <a href="https://www.linkedin.com/in/asmita-x/" target="_blank" rel="noreferrer">LinkedIn</a>
+              <a href="https://drive.google.com/file/d/1PNyzIyKl4qhZuoRkPsabNtA1aYScdGLO/view?usp=sharing" target="_blank" rel="noopener noreferrer">Resume</a>
+            </div>
           </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 xs:gap-7 sm:gap-8 lg:gap-10 xl:gap-12">
-            {/* Contact Information */}
-            <div className="space-y-6 xs:space-y-7 sm:space-y-8 animate-slide-left">
-              <div className="space-y-4 xs:space-y-5 sm:space-y-6">
-                <h3 className="text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl text-foreground font-semibold">Let's Connect</h3>
-                <p className="text-xs xs:text-sm sm:text-base text-muted-foreground leading-relaxed">
-                  I'm always excited to work on new projects and collaborate with amazing people. 
-                  Whether you have a specific project in mind or just want to chat about technology, 
-                  feel free to reach out!
-                </p>
+          
+          <div className="contact-form-card reveal">
+            <form onSubmit={handleSubmit}>
+              <div className="form-row">
+                <div><label>Name</label><input type="text" name="name" placeholder="Your full name" required /></div>
+                <div><label>Email</label><input type="email" name="email" placeholder="you@example.com" required /></div>
               </div>
-
-              <div className="grid gap-4 xs:gap-5 sm:gap-6">
-                {contactInfo.map((info, index) => (
-                  <Card 
-                    key={index} 
-                    className="glass p-4 xs:p-5 sm:p-6 hover:border-primary/30 transition-all duration-300 hover-lift-touch group animate-entrance"
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                  >
-                    <div className="flex items-start space-x-3 xs:space-x-3.5 sm:space-x-4">
-                      <div className="p-2.5 xs:p-3 rounded-lg bg-gradient-to-r from-gradient-start/20 to-gradient-end/20 group-hover:from-gradient-start/30 group-hover:to-gradient-end/30 transition-all duration-300 flex-shrink-0">
-                        <info.icon className="w-5 h-5 xs:w-5.5 xs:h-5.5 sm:w-6 sm:h-6 text-primary" />
-                      </div>
-                      <div className="space-y-1 flex-1 min-w-0">
-                        <h4 className="text-base xs:text-lg sm:text-xl font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
-                          {info.title}
-                        </h4>
-                        <p className="text-sm xs:text-base text-foreground font-medium break-words">{info.content}</p>
-                        <p className="text-xs xs:text-sm text-muted-foreground">{info.subtext}</p>
-                      </div>
-                    </div>
-                  </Card>
-                ))}
-              </div>
-            </div>
-
-            {/* Contact Form */}
-            <div className="animate-slide-right">
-              <Card className="glass p-4 xs:p-5 sm:p-6 md:p-8">
-                <form onSubmit={handleSubmit} className="space-y-4 xs:space-y-5 sm:space-y-6">
-                  <div className="space-y-1.5 xs:space-y-2">
-                    <h3 className="text-base xs:text-lg sm:text-xl md:text-2xl text-foreground font-semibold">Send a Message</h3>
-                    <p className="text-xs xs:text-sm sm:text-base text-muted-foreground">
-                      Fill out the form below and I'll get back to you as soon as possible.
-                    </p>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 xs:gap-4">
-                    <div className="space-y-1.5 xs:space-y-2 sm:col-span-1">
-                      <Label htmlFor="name" className="text-xs xs:text-sm sm:text-base text-foreground">Name *</Label>
-                      <Input
-                        id="name"
-                        name="name"
-                        type="text"
-                        placeholder="Your full name"
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        className="form-input touch-target text-xs xs:text-sm sm:text-base h-10 xs:h-11 sm:h-12"
-                        required
-                      />
-                    </div>
-                    <div className="space-y-1.5 xs:space-y-2 sm:col-span-1">
-                      <Label htmlFor="email" className="text-xs xs:text-sm sm:text-base text-foreground">Email *</Label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        placeholder="your.email@example.com"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        className="form-input touch-target text-xs xs:text-sm sm:text-base h-10 xs:h-11 sm:h-12"
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  <div className="space-y-1.5 xs:space-y-2">
-                    <Label htmlFor="subject" className="text-xs xs:text-sm sm:text-base text-foreground">Subject *</Label>
-                    <Input
-                      id="subject"
-                      name="subject"
-                      type="text"
-                      placeholder="What is this regarding?"
-                      value={formData.subject}
-                      onChange={handleInputChange}
-                      className="form-input text-xs xs:text-sm sm:text-base h-10 xs:h-11 sm:h-12"
-                      required
-                    />
-                  </div>
-
-                  <div className="space-y-1.5 xs:space-y-2">
-                    <Label htmlFor="message" className="text-xs xs:text-sm sm:text-base text-foreground">Message *</Label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      placeholder="Tell me about your project or how I can help..."
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      className="form-input min-h-[100px] xs:min-h-[120px] sm:min-h-[140px] resize-none text-xs xs:text-sm sm:text-base"
-                      required
-                    />
-                  </div>
-
-                  <Button 
-                    type="submit" 
-                    variant="gradient" 
-                    size="lg" 
-                    className="w-full touch-target transition-all duration-300 hover:scale-105 text-xs xs:text-sm sm:text-base h-11 xs:h-12 sm:h-14"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2" />
-                        Sending...
-                      </>
-                    ) : (
-                      <>
-                        <Send className="w-4 h-4 xs:w-5 xs:h-5 mr-2" />
-                        Send Message
-                      </>
-                    )}
-                  </Button>
-                </form>
-              </Card>
-            </div>
+              <div><label>Subject</label><input type="text" name="subject" placeholder="What's this regarding?" required /></div>
+              <div><label>Message</label><textarea name="message" placeholder="Tell me about your project or how I can help..." required></textarea></div>
+              <button type="submit" className="btn btn-primary" style={{ alignSelf: 'flex-start' }} disabled={loading}>
+                {loading ? 'Sending...' : 'Send Message'}
+              </button>
+            </form>
           </div>
         </div>
       </div>
